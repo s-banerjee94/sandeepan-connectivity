@@ -1,6 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { useState, useEffect } from "react";
+import { Badge } from "@/components/ui/badge";
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -24,13 +25,17 @@ const Skills = () => {
     };
   }, []);
 
-  const technicalSkills = [
+  const frontendSkills = [
     { name: "HTML & CSS", tag: "Frontend", color: "bg-orange-500" },
     { name: "JavaScript", tag: "Frontend", color: "bg-yellow-500" },
     { name: "TypeScript", tag: "Frontend", color: "bg-blue-500" },
     { name: "React", tag: "Frontend", color: "bg-cyan-500" },
     { name: "Angular", tag: "Frontend", color: "bg-red-500" },
+  ];
+
+  const backendSkills = [
     { name: "Node.js", tag: "Backend", color: "bg-green-500" },
+    { name: "Java Spring", tag: "Backend", color: "bg-green-600" },
     { name: "PostgreSQL", tag: "Database", color: "bg-indigo-500" },
     { name: "MongoDB", tag: "Database", color: "bg-emerald-500" }
   ];
@@ -62,24 +67,52 @@ const Skills = () => {
 
         <div className="grid md:grid-cols-2 gap-12">
           <div className={`transform transition-all duration-700 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-            <h3 className="text-2xl font-bold mb-8 text-center">Technical Skills</h3>
-            <div className="grid grid-cols-2 gap-4 md:gap-6">
-              {technicalSkills.map((skill) => (
-                <div 
-                  key={skill.name}
-                  className="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-                >
-                  <div className={`h-1.5 ${skill.color}`}></div>
-                  <div className="p-4">
-                    <p className="font-semibold text-slate-800 dark:text-slate-200">
-                      {skill.name}
-                    </p>
-                    <span className="inline-block mt-2 text-xs font-medium px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
-                      {skill.tag}
-                    </span>
+            <div className="mb-10">
+              <h3 className="text-2xl font-bold mb-8 text-center">Frontend Skills</h3>
+              <div className="grid grid-cols-2 gap-4 md:gap-6">
+                {frontendSkills.map((skill) => (
+                  <div 
+                    key={skill.name}
+                    className="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                  >
+                    <div className={`h-1.5 ${skill.color}`}></div>
+                    <div className="p-4">
+                      <p className="font-semibold text-slate-800 dark:text-slate-200">
+                        {skill.name}
+                      </p>
+                      <Badge className="mt-2 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100">
+                        {skill.tag}
+                      </Badge>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-2xl font-bold mb-8 text-center">Backend Skills</h3>
+              <div className="grid grid-cols-2 gap-4 md:gap-6">
+                {backendSkills.map((skill) => (
+                  <div 
+                    key={skill.name}
+                    className="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                  >
+                    <div className={`h-1.5 ${skill.color}`}></div>
+                    <div className="p-4">
+                      <p className="font-semibold text-slate-800 dark:text-slate-200">
+                        {skill.name}
+                      </p>
+                      <Badge className={`mt-2 ${
+                        skill.tag === "Backend" 
+                          ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100" 
+                          : "bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-100"
+                      }`}>
+                        {skill.tag}
+                      </Badge>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
